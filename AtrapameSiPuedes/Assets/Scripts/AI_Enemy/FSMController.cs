@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,9 +7,8 @@ using UnityEngine.UI;
 public class FSMController : MonoBehaviour
 {
     private IState currentState; // IState for the current state
-    public FSMIdle IdleState; // Idle state
+    public FSMIdleState IdleState; // Idle state
     public FSMFollowState FollowState; // Follow state
-    public FSMWalkAwayState WalkAwayState; // Walk Away state
 
     [SerializeField] private Text stateText; // Text to show what state we are in
 
@@ -19,22 +19,19 @@ public class FSMController : MonoBehaviour
 
     [SerializeField] private float perceptionRadius = 5; // radius of perception
     [Range(0, 360)] [SerializeField] private float perceptionAngle = 30; // angle of perception
-    [SerializeField] private LayerMask agentMask; // layer mask for the agent
+    [SerializeField] private LayerMask playerMask; // layer mask for the agent
     [SerializeField] private LayerMask obstacleMask; // layer mask for the obstacles
-    [SerializeField] private int numberOfRaysPerDegree; // number of rays per degree, used for the visual cone
-    [SerializeField] private MeshFilter perceptionMeshFilter; // MeshFilter used for the visual cone
-
-    private Mesh perceptionMesh; // Mesh used for the visual cone
 
     private Vector3 lastKnownPosition = new Vector3(); // last position known of the other agent
     private Vector3 lastKnownDirection = new Vector3(); // last direction known of the other agent
     private float lastKnownSpeed; // last speed known of the other agent
-    private Transform otherAgent; // Transform of the other agent
+    private Transform player; // Transform of the other agent
 
-    [Header("Follow and Walk Away")]
+    [Header("Follow")]
     [SerializeField] private float minFollowDistance = 2; // minimum distance for the follow state
-    [SerializeField] private float maxWalkAwayDistance = 8; // maximum distance for the walk away state
     [SerializeField] private float reachedDestinationDistanceThreshold = 0f; // threshold for the reached last known destination method
+
+    [SerializeField] private Transform initialTransform;
 
 
     /// <summary>
@@ -43,18 +40,10 @@ public class FSMController : MonoBehaviour
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        IdleState = new FSMIdle();
+        IdleState = new FSMIdleState();
         FollowState = new FSMFollowState();
-        WalkAwayState = new FSMWalkAwayState();
 
         ChangeToState(IdleState);
-
-        int randomRotationMultiplier = Random.Range(0, 4);
-        transform.Rotate(0, 90 * randomRotationMultiplier, 0);
-
-        perceptionMesh = new Mesh();
-        perceptionMesh.name = "Perception Mesh";
-        perceptionMeshFilter.mesh = perceptionMesh;
     }
     
     /// <summary>
@@ -95,20 +84,20 @@ public class FSMController : MonoBehaviour
     {
         //ActivateAgentSeenIndicator(false);
 
-        Collider[] agentsInPerceptionRadius = Physics.OverlapSphere(transform.position, perceptionRadius, agentMask);
-        for (int i = 0; i < agentsInPerceptionRadius.Length; i++)
+        Collider[] playersInSight = Physics.OverlapSphere(transform.position, perceptionRadius, playerMask);
+        for (int i = 0; i < playersInSight.Length; i++)
         {
-            Transform agent = agentsInPerceptionRadius[i].transform;
-            Vector3 direction = (agent.position - transform.position).normalized;
+            Transform playerSeen = playersInSight[i].transform;
+            Vector3 direction = (playerSeen.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, direction) <= perceptionAngle / 2)
             {
-                float distance = Vector3.Distance(transform.position, agent.position);
+                float distance = Vector3.Distance(transform.position, playerSeen.position);
                 if (!Physics.Raycast(transform.position, direction, distance, obstacleMask))
                 {
-                    lastKnownPosition = agent.position;
-                    lastKnownDirection = agent.forward;
-                    lastKnownSpeed = agent.GetComponent<NavMeshAgent>().speed;
-                    otherAgent = agent;
+                    lastKnownPosition = playerSeen.position;
+                    lastKnownDirection = playerSeen.forward;
+                    lastKnownSpeed = playerSeen.GetComponent<NavMeshAgent>().speed;
+                    player = playerSeen;
                     //ActivateAgentSeenIndicator(true);
                     return true;
                 }
@@ -133,9 +122,9 @@ public class FSMController : MonoBehaviour
     /// </summary>
     public void FollowAgent()
     {
-        Vector3 direction = otherAgent.position - transform.position;
-        float lookAhead = direction.magnitude / otherAgent.GetComponent<NavMeshAgent>().speed;
-        Vector3 futurePosition = otherAgent.transform.position + otherAgent.transform.forward * lookAhead;
+        Vector3 direction = player.position - transform.position;
+        float lookAhead = direction.magnitude / player.GetComponent<NavMeshAgent>().speed;
+        Vector3 futurePosition = player.transform.position + player.transform.forward * lookAhead;
         navMeshAgent.destination = futurePosition;
     }
 
@@ -156,14 +145,7 @@ public class FSMController : MonoBehaviour
     /// <returns>true if we are too close or too far away</returns>
     public bool CheckDistance(float distance, bool isFollowing)
     {
-        if(isFollowing)
-        {
-            return distance < minFollowDistance;
-        }
-        else
-        {
-            return distance > maxWalkAwayDistance;
-        }
+        return distance < minFollowDistance;
     }
 
     /// <summary>
@@ -189,12 +171,42 @@ public class FSMController : MonoBehaviour
     /// We calculate the lookAhead of the agent and the opposite position
     /// We set the opposite position as our destination
     /// </summary>
-    public void WalkAwayFromAgent()
+    /*public void WalkAwayFromAgent()
     {
         Vector3 direction = lastKnownDirection * -1;
         float lookAhead = direction.magnitude / lastKnownSpeed;
         Vector3 oppositePosition = transform.position + direction * lookAhead;
         oppositePosition.y = 0;
         navMeshAgent.destination = oppositePosition;
+    }*/
+
+    /////////// REVISAR ESTOS TRES MÉTODOS //////////
+    public bool OnInitialPosition()
+    {
+        return Mathf.Abs(Vector3.Distance(transform.position, initialTransform.position)) < reachedDestinationDistanceThreshold;
+    }
+
+    public void MoveToInitialPosition()
+    {
+        navMeshAgent.destination = initialTransform.position;
+    }
+
+    public void Idle()
+    {
+        Debug.Log(transform.rotation);
+        Debug.Log(initialTransform.rotation);
+        if(transform.position != initialTransform.position)
+        {
+            transform.position = initialTransform.position;
+        }
+        if(transform.rotation != initialTransform.rotation)
+        {
+            transform.rotation = initialTransform.rotation;
+        }
+    }
+
+    public void StopAgent()
+    {
+        navMeshAgent.Stop();
     }
 }

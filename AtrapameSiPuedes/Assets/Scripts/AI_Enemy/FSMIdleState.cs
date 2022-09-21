@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FSMIdle : IState
+public class FSMIdleState : IState
 {
     /// <summary>
     /// UpdateState for the Idle state
@@ -11,6 +11,15 @@ public class FSMIdle : IState
         if (controller.Perceive())
         {
             controller.ChangeToState(controller.FollowState);
+        }
+        else if (!controller.OnInitialPosition())
+        {
+            controller.MoveToInitialPosition();
+        }
+        else
+        {
+            controller.StopAgent();
+            controller.Idle();
         }
     }
 

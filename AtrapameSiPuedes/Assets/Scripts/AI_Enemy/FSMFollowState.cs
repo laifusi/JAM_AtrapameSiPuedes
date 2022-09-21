@@ -16,12 +16,6 @@ public class FSMFollowState : IState
         if (controller.Perceive())
         {
             controller.FollowAgent();
-            float distance = controller.DistanceToAgent();
-            if (controller.CheckDistance(distance, true))
-            {
-                //controller.ActivateAgentSeenIndicator(false);
-                controller.ChangeToState(controller.WalkAwayState);
-            }
         }
         else
         {

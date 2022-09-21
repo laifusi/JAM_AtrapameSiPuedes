@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FSMWalkAwayState : IState
+/*public class FSMWalkAwayState : IState
 {
     /// <summary>
     /// UpdateState for the Walk Away state
@@ -19,4 +19,4 @@ public class FSMWalkAwayState : IState
     }
 
     public void OnTrigger(FSMController controller, Collider other) { }
-}
+}*/
