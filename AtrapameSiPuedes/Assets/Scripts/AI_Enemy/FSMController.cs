@@ -9,6 +9,7 @@ public class FSMController : MonoBehaviour
     private IState currentState; // IState for the current state
     public FSMIdleState IdleState; // Idle state
     public FSMFollowState FollowState; // Follow state
+    public FSMBackToIdle BackToIdleState; // Back to Idle state
 
     [SerializeField] private Text stateText; // Text to show what state we are in
 
@@ -42,6 +43,7 @@ public class FSMController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         IdleState = new FSMIdleState();
         FollowState = new FSMFollowState();
+        BackToIdleState = new FSMBackToIdle();
 
         ChangeToState(IdleState);
     }
@@ -191,22 +193,15 @@ public class FSMController : MonoBehaviour
         navMeshAgent.destination = initialTransform.position;
     }
 
-    public void Idle()
+    public void BackToInit()
     {
-        Debug.Log(transform.rotation);
-        Debug.Log(initialTransform.rotation);
         if(transform.position != initialTransform.position)
         {
-            transform.position = initialTransform.position;
+            transform.position = new Vector3(initialTransform.position.x, transform.position.y, initialTransform.position.z);
         }
         if(transform.rotation != initialTransform.rotation)
         {
             transform.rotation = initialTransform.rotation;
         }
-    }
-
-    public void StopAgent()
-    {
-        navMeshAgent.Stop();
     }
 }
