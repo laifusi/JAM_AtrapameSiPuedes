@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FSMFollowState : IState
 {
+    float timeSinceLastSeen;
+
     /// <summary>
     /// UpdateState for the Follow state
     /// We check if we see the agent
@@ -16,12 +18,18 @@ public class FSMFollowState : IState
         if (controller.Perceive())
         {
             controller.FollowAgent();
+            timeSinceLastSeen = 0;
         }
         else
         {
             bool locationReached = controller.InLastLocationKnown();
             if(locationReached)
             {
+                if(timeSinceLastSeen < controller.SearchingTime)
+                {
+                    timeSinceLastSeen += Time.deltaTime;
+                    return;
+                }
                 controller.ChangeToState(controller.BackToIdleState);
             }
             else

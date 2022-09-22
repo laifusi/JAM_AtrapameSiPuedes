@@ -33,7 +33,9 @@ public class FSMController : MonoBehaviour
     [SerializeField] private float reachedDestinationDistanceThreshold = 0f; // threshold for the reached last known destination method
 
     [SerializeField] private Transform initialTransform;
+    [SerializeField] private float searchingTime = 2;
 
+    public float SearchingTime => searchingTime;
 
     /// <summary>
     /// We get the NavMeshAgent component, initialize the states, initialize a random rotation and initialize the perception cone mesh
