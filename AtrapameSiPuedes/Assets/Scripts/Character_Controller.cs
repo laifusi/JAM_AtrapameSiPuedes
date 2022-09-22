@@ -7,7 +7,7 @@ public class Character_Controller : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private float playerSpeed = 5.0f;
+    private float playerSpeed = 5.5f;
     public GameObject vaina;
     private List<GameObject> lista_vainas;
     //private float jumpHeight = 1.0f;
