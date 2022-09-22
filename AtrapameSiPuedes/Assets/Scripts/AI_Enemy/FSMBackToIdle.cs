@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/*public class FSMWalkAwayState : IState
+public class FSMBackToIdle : IState
 {
     /// <summary>
     /// UpdateState for the Walk Away state
@@ -10,13 +10,20 @@ using UnityEngine;
     /// <param name="controller">FSMController</param>
     public void UpdateState(FSMController controller)
     {
-        controller.WalkAwayFromAgent();
-        float distance = controller.DistanceToAgent();
-        if (controller.CheckDistance(distance, false))
+        if (controller.Perceive())
         {
             controller.ChangeToState(controller.FollowState);
+        }
+        else if (!controller.OnInitialPosition())
+        {
+            controller.MoveToInitialPosition();
+        }
+        else
+        {
+            controller.BackToInit();
+            controller.ChangeToState(controller.IdleState);
         }
     }
 
     public void OnTrigger(FSMController controller, Collider other) { }
-}*/
+}

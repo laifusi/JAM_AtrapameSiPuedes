@@ -22,7 +22,7 @@ public class FSMFollowState : IState
             bool locationReached = controller.InLastLocationKnown();
             if(locationReached)
             {
-                controller.ChangeToState(controller.IdleState);
+                controller.ChangeToState(controller.BackToIdleState);
             }
             else
             {
