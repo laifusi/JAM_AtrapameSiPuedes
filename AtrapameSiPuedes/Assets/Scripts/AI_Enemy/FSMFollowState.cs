@@ -30,7 +30,14 @@ public class FSMFollowState : IState
                     timeSinceLastSeen += Time.deltaTime;
                     return;
                 }
-                controller.ChangeToState(controller.BackToIdleState);
+                if (controller.PatrolAgent)
+                {
+                    controller.ChangeToState(controller.PatrolState);
+                }
+                else
+                {
+                    controller.ChangeToState(controller.BackToIdleState);
+                }
             }
             else
             {

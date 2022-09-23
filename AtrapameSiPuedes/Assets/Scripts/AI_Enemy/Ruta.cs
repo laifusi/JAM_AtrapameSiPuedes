@@ -2,24 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ruta : MonoBehaviour
+[System.Serializable]
+public class Ruta
 {
-
     public Transform[] puntos_ruta;
 
     private int punto_actual = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void pasar_punto()
     {
@@ -28,9 +16,8 @@ public class Ruta : MonoBehaviour
             punto_actual = 0;
     }
 
-    public void cambiar_objetivo()
+    public Vector3 getPuntoActual()
     {
-
+        return puntos_ruta[punto_actual].position;
     }
-
 }

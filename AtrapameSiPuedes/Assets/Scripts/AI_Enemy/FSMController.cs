@@ -10,6 +10,7 @@ public class FSMController : MonoBehaviour
     public FSMIdleState IdleState; // Idle state
     public FSMFollowState FollowState; // Follow state
     public FSMBackToIdle BackToIdleState; // Back to Idle state
+    public FSMPatrolState PatrolState; // Patrol state
 
     [SerializeField] private Text stateText; // Text to show what state we are in
 
@@ -35,7 +36,12 @@ public class FSMController : MonoBehaviour
     [SerializeField] private Transform initialTransform;
     [SerializeField] private float searchingTime = 2;
 
+    [Header("Patrol")]
+    [SerializeField] private bool patrol;
+    [SerializeField] private Ruta patrolRoute;
+
     public float SearchingTime => searchingTime;
+    public bool PatrolAgent => patrol;
 
     /// <summary>
     /// We get the NavMeshAgent component, initialize the states, initialize a random rotation and initialize the perception cone mesh
@@ -46,8 +52,16 @@ public class FSMController : MonoBehaviour
         IdleState = new FSMIdleState();
         FollowState = new FSMFollowState();
         BackToIdleState = new FSMBackToIdle();
+        PatrolState = new FSMPatrolState();
 
-        ChangeToState(IdleState);
+        if (patrol)
+        {
+            ChangeToState(PatrolState);
+        }
+        else
+        {
+            ChangeToState(IdleState);
+        }
     }
     
     /// <summary>
@@ -205,5 +219,21 @@ public class FSMController : MonoBehaviour
         {
             transform.rotation = initialTransform.rotation;
         }
+    }
+
+    public bool ReachedPatrolPoint()
+    {
+        return Mathf.Abs(Vector3.Distance(transform.position, navMeshAgent.destination)) < reachedDestinationDistanceThreshold;
+    }
+
+    public void NextPatrolPoint()
+    {
+        patrolRoute.pasar_punto();
+    }
+
+    public void MoveToCurrentPoint()
+    {
+        Vector3 patrolPoint = patrolRoute.getPuntoActual();
+        navMeshAgent.destination = new Vector3(patrolPoint.x, transform.position.y, patrolPoint.z);
     }
 }

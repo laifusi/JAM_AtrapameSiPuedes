@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class FSMBackToIdle : IState
+public class FSMPatrolState : IState
 {
     /// <summary>
-    /// UpdateState for the Back to Idle state
+    /// UpdateState for the Patrol state
     /// </summary>
     /// <param name="controller">FSMController</param>
     public void UpdateState(FSMController controller)
@@ -12,14 +12,14 @@ public class FSMBackToIdle : IState
         {
             controller.ChangeToState(controller.FollowState);
         }
-        else if (!controller.OnInitialPosition())
+        else if (controller.ReachedPatrolPoint())
         {
-            controller.MoveToInitialPosition();
+            controller.NextPatrolPoint();
+            controller.MoveToCurrentPoint();
         }
         else
         {
-            controller.BackToInit();
-            controller.ChangeToState(controller.IdleState);
+            controller.MoveToCurrentPoint();
         }
     }
 
