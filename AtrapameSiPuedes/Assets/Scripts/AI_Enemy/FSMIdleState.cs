@@ -12,15 +12,6 @@ public class FSMIdleState : IState
         {
             controller.ChangeToState(controller.FollowState);
         }
-        else if (!controller.OnInitialPosition())
-        {
-            controller.MoveToInitialPosition();
-        }
-        else
-        {
-            controller.StopAgent();
-            controller.Idle();
-        }
     }
 
     public void OnTrigger(FSMController controller, Collider other) { }
