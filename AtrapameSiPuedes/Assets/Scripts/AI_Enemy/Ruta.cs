@@ -28,4 +28,9 @@ public class Ruta : MonoBehaviour
             punto_actual = 0;
     }
 
+    public void cambiar_objetivo()
+    {
+
+    }
+
 }

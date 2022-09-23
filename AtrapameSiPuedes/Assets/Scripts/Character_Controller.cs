@@ -7,7 +7,7 @@ public class Character_Controller : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private float playerSpeed = 5f;
+    private float playerSpeed = 5.5f;
     public GameObject vaina;
     private List<GameObject> lista_vainas;
     //private float jumpHeight = 1.0f;
@@ -52,7 +52,7 @@ public class Character_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)
