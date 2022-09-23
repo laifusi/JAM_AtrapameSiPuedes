@@ -206,4 +206,10 @@ public class FSMController : MonoBehaviour
             transform.rotation = initialTransform.rotation;
         }
     }
+
+    //FUNCIONES VICENTE//
+    public void Alarma(Vector3 new_destiny)
+    {
+        Debug.Log("Agente asociado se dirige al ultimo punto de jugador avistado.");
+    }
 }
