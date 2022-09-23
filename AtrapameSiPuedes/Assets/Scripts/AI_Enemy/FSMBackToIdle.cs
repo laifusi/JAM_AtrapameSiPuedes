@@ -3,9 +3,7 @@ using UnityEngine;
 public class FSMBackToIdle : IState
 {
     /// <summary>
-    /// UpdateState for the Walk Away state
-    /// We walk away from the agent we saw
-    /// We check if we are too far from the agent, in which case we go back to the Follow state
+    /// UpdateState for the Back to Idle state
     /// </summary>
     /// <param name="controller">FSMController</param>
     public void UpdateState(FSMController controller)
