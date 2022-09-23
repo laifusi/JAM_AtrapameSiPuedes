@@ -25,14 +25,11 @@ public class FSMFollowState : IState
             bool locationReached = controller.InLastLocationKnown();
             if(locationReached)
             {
-<<<<<<< HEAD
-=======
                 if(timeSinceLastSeen < controller.SearchingTime)
                 {
                     timeSinceLastSeen += Time.deltaTime;
                     return;
                 }
->>>>>>> IA_Enemigo_v1
                 controller.ChangeToState(controller.BackToIdleState);
             }
             else
