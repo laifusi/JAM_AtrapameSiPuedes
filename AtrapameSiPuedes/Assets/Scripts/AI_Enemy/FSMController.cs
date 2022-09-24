@@ -82,10 +82,12 @@ public class FSMController : MonoBehaviour
         if(state == AlertState || state == FollowState)
         {
             ChangeAgentSpeed(followSpeedMultiplier);
+            Game_Controller.Instance.activarAlarma();
         }
         else
         {
             ChangeAgentSpeed(patrolSpeedMultiplier);
+            Game_Controller.Instance.desactivarAlarma();
         }
 
         if(state == FollowState)

@@ -5,22 +5,30 @@ using UnityEngine.UI;
 
 public class Game_Controller : MonoBehaviour
 {
+    public static Game_Controller Instance;
 
     public AudioSource reproductor_audio;
 
-    public bool alarma;
     public GameObject panel_alarma;
 
-    // Start is called before the first frame update
-    void Start()
+    private int alertedElements;
+
+    void Awake()
     {
-        alarma = true;
-        desactivarAlarma();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        desactivarAlarma();
     }
 
     public void Victoria()
@@ -35,7 +43,8 @@ public class Game_Controller : MonoBehaviour
 
     public void activarAlarma()
     {
-        reproductor_audio.Play();
+        if(!reproductor_audio.isPlaying)
+            reproductor_audio.Play();
         panel_alarma.SetActive(true);
     }
 
