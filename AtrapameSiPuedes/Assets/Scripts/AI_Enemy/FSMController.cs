@@ -34,6 +34,7 @@ public class FSMController : MonoBehaviour
     [Header("Follow")]
     [SerializeField] private float minFollowDistance = 2; // minimum distance for the follow state
     [SerializeField] private float reachedDestinationDistanceThreshold = 0f; // threshold for the reached last known destination method
+    [SerializeField] private FSMController[] agentsToAlert;
 
     [SerializeField] private Transform initialTransform;
     [SerializeField] private float searchingTime = 2;
@@ -85,6 +86,11 @@ public class FSMController : MonoBehaviour
         else
         {
             ChangeAgentSpeed(patrolSpeedMultiplier);
+        }
+
+        if(state == FollowState)
+        {
+            AlertAgents();
         }
 
         currentState = state;
@@ -271,5 +277,13 @@ public class FSMController : MonoBehaviour
     public void ChangeAgentSpeed(float speedMultiplier)
     {
         navMeshAgent.speed = agentSpeed * speedMultiplier;
+    }
+
+    public void AlertAgents()
+    {
+        foreach (FSMController agent in agentsToAlert)
+        {
+            agent.Alarma(lastKnownPosition);
+        }
     }
 }

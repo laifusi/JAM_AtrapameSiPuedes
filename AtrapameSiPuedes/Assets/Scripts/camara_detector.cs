@@ -16,7 +16,7 @@ public class camara_detector : MonoBehaviour
 
     public float dir = 1;
 
-    public GameObject[] agentes_zona;
+    public FSMController[] agentes_zona;
 
     [Header("Perception")]
     [SerializeField] private GameObject agentSeenIndicator; // indicator for perception
@@ -53,10 +53,9 @@ public class camara_detector : MonoBehaviour
         if(this.Perceive())
         {
             Debug.Log("Personaje detectado");
-            foreach(GameObject agent in agentes_zona)
+            foreach(FSMController agent in agentes_zona)
             {
-                FSMController c = agent.GetComponent<FSMController>();
-                c.Alarma(lastKnownPosition);
+                agent.Alarma(lastKnownPosition);
             }
         }
     }
