@@ -11,6 +11,8 @@ public class Game_Controller : MonoBehaviour
 
     public GameObject panel_alarma;
 
+    public Menus menu;
+
     private int alertedElements;
 
     void Awake()
@@ -34,11 +36,13 @@ public class Game_Controller : MonoBehaviour
     public void Victoria()
     {
         Debug.Log("Ganas la partida");
+        menu.Victoria();
     }
 
     public void Derrota()
     {
         Debug.Log("Pierdes la partida");
+        menu.Derrota();
     }
 
     public void activarAlarma()

@@ -22,6 +22,17 @@ public class Fin_juego : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Derrota
+            Debug.Log("Cogido");
+            gc.Derrota();
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //Derrota
+            Debug.Log("Cogido");
             gc.Derrota();
         }
     }
