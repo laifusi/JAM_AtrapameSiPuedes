@@ -12,7 +12,7 @@ public class FSMPatrolState : IState
         {
             controller.ChangeToState(controller.FollowState);
         }
-        else if (controller.ReachedPatrolPoint())
+        else if (controller.ReachedDestination())
         {
             controller.NextPatrolPoint();
             controller.MoveToCurrentPoint();

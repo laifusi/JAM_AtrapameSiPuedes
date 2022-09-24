@@ -11,6 +11,7 @@ public class FSMController : MonoBehaviour
     public FSMFollowState FollowState; // Follow state
     public FSMBackToIdle BackToIdleState; // Back to Idle state
     public FSMPatrolState PatrolState; // Patrol state
+    public FSMAlertState AlertState; // Alert state
 
     [SerializeField] private Text stateText; // Text to show what state we are in
 
@@ -28,6 +29,7 @@ public class FSMController : MonoBehaviour
     private Vector3 lastKnownDirection = new Vector3(); // last direction known of the other agent
     private float lastKnownSpeed; // last speed known of the other agent
     private Transform player; // Transform of the other agent
+    private Vector3 alertPosition;
 
     [Header("Follow")]
     [SerializeField] private float minFollowDistance = 2; // minimum distance for the follow state
@@ -35,7 +37,7 @@ public class FSMController : MonoBehaviour
 
     [SerializeField] private Transform initialTransform;
     [SerializeField] private float searchingTime = 2;
-
+    
     [Header("Patrol")]
     [SerializeField] private bool patrol;
     [SerializeField] private Ruta patrolRoute;
@@ -53,6 +55,7 @@ public class FSMController : MonoBehaviour
         FollowState = new FSMFollowState();
         BackToIdleState = new FSMBackToIdle();
         PatrolState = new FSMPatrolState();
+        AlertState = new FSMAlertState();
 
         if (patrol)
         {
@@ -224,11 +227,13 @@ public class FSMController : MonoBehaviour
     //FUNCIONES VICENTE//
     public void Alarma(Vector3 new_destiny)
     {
-        Debug.Log("Agente asociado se dirige al ultimo punto de jugador avistado.");
+        alertPosition = new_destiny;
+        navMeshAgent.destination = alertPosition;
+        ChangeToState(AlertState);
     }
     /// 
 
-    public bool ReachedPatrolPoint()
+    public bool ReachedDestination()
     {
         return Mathf.Abs(Vector3.Distance(transform.position, navMeshAgent.destination)) < reachedDestinationDistanceThreshold;
     }
@@ -242,5 +247,10 @@ public class FSMController : MonoBehaviour
     {
         Vector3 patrolPoint = patrolRoute.getPuntoActual();
         navMeshAgent.destination = new Vector3(patrolPoint.x, transform.position.y, patrolPoint.z);
+    }
+
+    public void MoveToAlertPosition()
+    {
+        navMeshAgent.destination = alertPosition;
     }
 }
