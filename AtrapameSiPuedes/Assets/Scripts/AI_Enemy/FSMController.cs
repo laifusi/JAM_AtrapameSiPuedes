@@ -221,12 +221,13 @@ public class FSMController : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     //FUNCIONES VICENTE//
     public void Alarma(Vector3 new_destiny)
     {
         Debug.Log("Agente asociado se dirige al ultimo punto de jugador avistado.");
-=======
+    }
+    /// 
+
     public bool ReachedPatrolPoint()
     {
         return Mathf.Abs(Vector3.Distance(transform.position, navMeshAgent.destination)) < reachedDestinationDistanceThreshold;
@@ -241,6 +242,5 @@ public class FSMController : MonoBehaviour
     {
         Vector3 patrolPoint = patrolRoute.getPuntoActual();
         navMeshAgent.destination = new Vector3(patrolPoint.x, transform.position.y, patrolPoint.z);
->>>>>>> main
     }
 }

@@ -9,7 +9,9 @@ public class Character_Controller : MonoBehaviour
     private Vector3 playerVelocity;
     private float playerSpeed = 5f;
     public GameObject vaina;
-    private List<GameObject> lista_vainas;
+    public GameObject vaina_1, vaina_2;
+    public bool objeto_robado;
+    public Imagen ico_vaina_1, ico_vaina_2;
     //private float jumpHeight = 1.0f;
     //private float gravityValue = -9.81f;
 
@@ -18,7 +20,11 @@ public class Character_Controller : MonoBehaviour
     void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
-        lista_vainas = new List<GameObject>();
+
+        vaina_1 = null;
+        vaina_2 = null;
+
+        objeto_robado = false;
     }
 
     // Update is called once per frame
@@ -33,21 +39,46 @@ public class Character_Controller : MonoBehaviour
     {
         if(Input.GetKeyDown("e"))
         {
-            if(lista_vainas.Count == 0)
+            if(vaina_1 == null)
             {
                 GameObject v = Instantiate(vaina, this.transform.position, Quaternion.identity);
                 v.GetComponent<Vaina_transporte>().create_vaina(this.transform.position, this.gameObject);
-                lista_vainas.Add(v);
+                vaina_1 = v;
+                ico_vaina_1.Cambiar_imagen_activa();
             }
 
             else
             {
-                GameObject v = lista_vainas[0];
-                v.GetComponent<Vaina_transporte>().teletransporte();
-                lista_vainas.Remove(v);
-                Destroy(v);
+                teletransporte(vaina_1.transform.position);
+                Destroy(vaina_1);
+                ico_vaina_1.Cambiar_imagen_oculta();
             }
         }
+
+        if (Input.GetKeyDown("q"))
+        {
+            if (vaina_2 == null)
+            {
+                GameObject v = Instantiate(vaina, this.transform.position, Quaternion.identity);
+                v.GetComponent<Vaina_transporte>().create_vaina(this.transform.position, this.gameObject);
+                vaina_2 = v;
+                ico_vaina_2.Cambiar_imagen_activa();
+            }
+
+            else
+            {
+                teletransporte(vaina_2.transform.position);
+                Destroy(vaina_2);
+                ico_vaina_2.Cambiar_imagen_oculta();
+            }
+        }
+    }
+
+    public void teletransporte(Vector3 position_vaina)
+    {
+        controller.enabled = false;
+        this.gameObject.transform.position = position_vaina;
+        controller.enabled = true;
     }
 
     private void FixedUpdate()
@@ -61,6 +92,15 @@ public class Character_Controller : MonoBehaviour
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Prize")
+        {
+            objeto_robado = true;
+            Destroy(other.gameObject);
+        }
     }
 
 }

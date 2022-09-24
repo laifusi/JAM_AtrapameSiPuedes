@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vaina_transporte : MonoBehaviour
+public class Fin_juego : MonoBehaviour
 {
-
-    Vector3 position_vaina;
-    GameObject character;
-    
+    public Game_Controller gc;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +17,12 @@ public class Vaina_transporte : MonoBehaviour
         
     }
 
-    public void create_vaina(Vector3 position, GameObject personaje)
+    private void OnCollisionEnter(Collision collision)
     {
-        this.position_vaina = position;
-        character = personaje;
+        if (collision.gameObject.tag == "Player")
+        {
+            //Derrota
+            gc.Derrota();
+        }
     }
 }

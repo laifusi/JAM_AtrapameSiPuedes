@@ -16,7 +16,7 @@ public class camara_detector : MonoBehaviour
 
     public float dir = 1;
 
-    GameObject[] agentes_zona;
+    public GameObject[] agentes_zona;
 
     [Header("Perception")]
     [SerializeField] private GameObject agentSeenIndicator; // indicator for perception

@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vaina_transporte : MonoBehaviour
+public class Game_Controller : MonoBehaviour
 {
-
-    Vector3 position_vaina;
-    GameObject character;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +16,13 @@ public class Vaina_transporte : MonoBehaviour
         
     }
 
-    public void create_vaina(Vector3 position, GameObject personaje)
+    public void Victoria()
     {
-        this.position_vaina = position;
-        character = personaje;
+        Debug.Log("Ganas la partida");
+    }
+
+    public void Derrota()
+    {
+        Debug.Log("Pierdes la partida");
     }
 }
