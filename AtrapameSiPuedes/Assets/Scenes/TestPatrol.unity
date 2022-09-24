@@ -3343,6 +3343,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7600614741053566814, guid: 084eddbbae57e1c49818fac9b4e75c7e, type: 3}
+      propertyPath: patrolAccMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600614741053566814, guid: 084eddbbae57e1c49818fac9b4e75c7e, type: 3}
       propertyPath: patrolRoute.puntos_ruta.Array.size
       value: 3
       objectReference: {fileID: 0}

@@ -42,6 +42,10 @@ public class FSMController : MonoBehaviour
     [SerializeField] private bool patrol;
     [SerializeField] private Ruta patrolRoute;
 
+    [SerializeField] private float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float followSpeedMultiplier = 1;
+    private float agentSpeed;
+
     public float SearchingTime => searchingTime;
     public bool PatrolAgent => patrol;
 
@@ -51,6 +55,7 @@ public class FSMController : MonoBehaviour
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        agentSpeed = navMeshAgent.speed;
         IdleState = new FSMIdleState();
         FollowState = new FSMFollowState();
         BackToIdleState = new FSMBackToIdle();
@@ -73,6 +78,15 @@ public class FSMController : MonoBehaviour
     /// <param name="state">IState we have to switch to</param>
     public void ChangeToState(IState state)
     {
+        if(state == AlertState || state == FollowState)
+        {
+            ChangeAgentSpeed(followSpeedMultiplier);
+        }
+        else
+        {
+            ChangeAgentSpeed(patrolSpeedMultiplier);
+        }
+
         currentState = state;
     }
 
@@ -252,5 +266,10 @@ public class FSMController : MonoBehaviour
     public void MoveToAlertPosition()
     {
         navMeshAgent.destination = alertPosition;
+    }
+
+    public void ChangeAgentSpeed(float speedMultiplier)
+    {
+        navMeshAgent.speed = agentSpeed * speedMultiplier;
     }
 }
