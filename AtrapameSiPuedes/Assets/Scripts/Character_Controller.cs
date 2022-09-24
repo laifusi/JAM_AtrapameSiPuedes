@@ -94,13 +94,4 @@ public class Character_Controller : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.tag == "Prize")
-        {
-            objeto_robado = true;
-            Destroy(other.gameObject);
-        }
-    }
-
 }
