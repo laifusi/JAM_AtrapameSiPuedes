@@ -12,4 +12,14 @@ public class Fin_juego : MonoBehaviour
             Game_Controller.Instance.Derrota();
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //Derrota
+            Debug.Log("Cogido");
+            gc.Derrota();
+        }
+    }
 }

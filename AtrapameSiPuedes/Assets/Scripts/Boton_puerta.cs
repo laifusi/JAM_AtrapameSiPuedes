@@ -14,18 +14,33 @@ public class Boton_puerta : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        estado_1 = true;
         interact = false;
 
-        foreach (Puerta p1 in puertas_asociadas_1)
+        if(estado_1)
         {
-            p1.AbrirPuerta();
+            foreach (Puerta p1 in puertas_asociadas_1)
+            {
+                p1.AbrirPuerta();
 
+            }
+            foreach (Puerta p2 in puertas_asociadas_2)
+            {
+                p2.CerrarPuerta();
+
+            }
         }
-        foreach (Puerta p2 in puertas_asociadas_2)
+        else
         {
-            p2.CerrarPuerta();
+            foreach (Puerta p2 in puertas_asociadas_2)
+            {
+                p2.AbrirPuerta();
 
+            }
+            foreach (Puerta p1 in puertas_asociadas_1)
+            {
+                p1.CerrarPuerta();
+
+            }
         }
     }
 
