@@ -44,13 +44,17 @@ public class Game_Controller : MonoBehaviour
     public void activarAlarma()
     {
         if(!reproductor_audio.isPlaying)
+        {
             reproductor_audio.Play();
+            MusicManager.Instance.ChangeToAlert();
+        }
         panel_alarma.SetActive(true);
     }
 
     public void desactivarAlarma()
     {
         reproductor_audio.Stop();
+        MusicManager.Instance.ChangeToStealth();
         panel_alarma.SetActive(false);
     }
 }
