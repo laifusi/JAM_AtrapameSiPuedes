@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Meta : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            if(collision.gameObject.GetComponent<Character_Controller>().objeto_robado)
+            Debug.Log("Jugador detectado");
+            if (other.gameObject.GetComponent<Character_Controller>().objeto_robado)
             {
                 //Victoria
                 Game_Controller.Instance.Victoria();

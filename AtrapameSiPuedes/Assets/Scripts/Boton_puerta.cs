@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boton_puerta : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Boton_puerta : MonoBehaviour
 
     public bool estado_1;
     public bool interact;
+
+    public GameObject panel_info;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +96,7 @@ public class Boton_puerta : MonoBehaviour
         {
             Debug.Log("Entrando en computadora puertas");
             interact = true;
-
+            panel_info.SetActive(true);
 
         }
     }
@@ -104,6 +107,7 @@ public class Boton_puerta : MonoBehaviour
         {
             Debug.Log("Saliendo de computadora puertas");
             interact = false;
+            panel_info.SetActive(false);
 
         }
     }

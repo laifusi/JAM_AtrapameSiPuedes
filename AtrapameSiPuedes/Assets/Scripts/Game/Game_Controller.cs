@@ -31,6 +31,7 @@ public class Game_Controller : MonoBehaviour
     private void Start()
     {
         desactivarAlarma();
+        Physics.IgnoreLayerCollision(7, 8);
     }
 
     public void Victoria()

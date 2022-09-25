@@ -15,6 +15,8 @@ public class ObjetiveObject : MonoBehaviour
             {
                 agent.Alarma(transform.position);
             }
+
+            Destroy(this.gameObject);
         }
     }
 }

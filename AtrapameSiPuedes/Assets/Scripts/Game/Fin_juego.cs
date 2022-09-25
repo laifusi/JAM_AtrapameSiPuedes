@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Fin_juego : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public Game_Controller gc;
+    // Start is called before the first frame update
+    void Start()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            //Derrota
-            Game_Controller.Instance.Derrota();
-        }
+        
     }
 
-    private void OnCollisionStay(Collision collision)
+    // Update is called once per frame
+    void Update()
     {
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("entro en collider");
         if (collision.gameObject.tag == "Player")
         {
             //Derrota
             Debug.Log("Cogido");
-            gc.Derrota();
+            Game_Controller.Instance.Derrota();
         }
     }
 }
