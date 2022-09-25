@@ -1039,7 +1039,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 956892481}
         m_TargetAssemblyTypeName: Menus, Assembly-CSharp
-        m_MethodName: Salir_del_Juego
+        m_MethodName: Creditos
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

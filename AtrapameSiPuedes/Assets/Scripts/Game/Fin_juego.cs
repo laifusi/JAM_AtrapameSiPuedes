@@ -17,7 +17,7 @@ public class Fin_juego : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Debug.Log("entro en collider");
         if (collision.gameObject.tag == "Player")
