@@ -1425,6 +1425,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6686860583497361364, guid: 9f65e01761f38444aac027211a16fa52, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c31a6f788cfaf8244a106723206a41ff, type: 2}
+    - target: {fileID: -4720846741426220578, guid: 9f65e01761f38444aac027211a16fa52, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3e4ff02fea68a74f8c5480733b39ef6, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f65e01761f38444aac027211a16fa52, type: 3}
       propertyPath: m_Name
       value: protagBreakdance_Ending_3
