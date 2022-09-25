@@ -13,8 +13,6 @@ public class Game_Controller : MonoBehaviour
 
     public Menus menu;
 
-    private int alertedElements;
-
     void Awake()
     {
         if (Instance == null)
@@ -45,6 +43,7 @@ public class Game_Controller : MonoBehaviour
     {
         Debug.Log("Pierdes la partida");
         MusicManager.Instance.PlayLoseClip();
+        reproductor_audio.Stop();
         menu.Derrota();
     }
 

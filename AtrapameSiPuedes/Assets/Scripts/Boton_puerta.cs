@@ -56,7 +56,8 @@ public class Boton_puerta : MonoBehaviour
     {
         if (Input.GetKeyDown("x") && interact)
         {
-            audioSource?.Play();
+            if(audioSource != null)
+                audioSource.Play();
             Debug.Log("Abriendo puertas");
             cambio_estado();
         }
