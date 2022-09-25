@@ -237,8 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateText: {fileID: 0}
   agentSeenIndicator: {fileID: 0}
-  perceptionRadius: 15
-  perceptionAngle: 120
+  perceptionRadius: 10
+  perceptionAngle: 100
   playerMask:
     serializedVersion: 2
     m_Bits: 64
