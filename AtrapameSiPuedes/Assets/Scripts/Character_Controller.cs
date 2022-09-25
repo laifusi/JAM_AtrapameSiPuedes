@@ -15,10 +15,12 @@ public class Character_Controller : MonoBehaviour
     //private float jumpHeight = 1.0f;
     //private float gravityValue = -9.81f;
 
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         controller = gameObject.AddComponent<CharacterController>();
 
         vaina_1 = null;
@@ -89,6 +91,11 @@ public class Character_Controller : MonoBehaviour
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
