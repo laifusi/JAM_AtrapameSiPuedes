@@ -16,6 +16,8 @@ public class ObjetiveObject : MonoBehaviour
                 agent.Alarma(transform.position);
             }
 
+            MusicManager.Instance.PlayObjectiveClip();
+
             Destroy(this.gameObject);
         }
     }

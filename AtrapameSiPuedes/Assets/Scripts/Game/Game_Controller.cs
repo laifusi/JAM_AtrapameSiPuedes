@@ -37,12 +37,14 @@ public class Game_Controller : MonoBehaviour
     public void Victoria()
     {
         Debug.Log("Ganas la partida");
+        MusicManager.Instance.PlayWinClip();
         menu.Victoria();
     }
 
     public void Derrota()
     {
         Debug.Log("Pierdes la partida");
+        MusicManager.Instance.PlayLoseClip();
         menu.Derrota();
     }
 

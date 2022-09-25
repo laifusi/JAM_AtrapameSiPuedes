@@ -9,6 +9,12 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip stealth;
     [SerializeField] private AudioClip alert;
 
+    [Header("Win Or Lose Sound Effects")]
+    [SerializeField] AudioSource winOrLoseAS;
+    [SerializeField] private AudioClip objectiveClip;
+    [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioClip loseClip;
+
     void Awake()
     {
         if (Instance == null)
@@ -35,5 +41,21 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.clip = alert;
         audioSource.Play();
+    }
+
+    public void PlayObjectiveClip()
+    {
+        winOrLoseAS.PlayOneShot(objectiveClip);
+    }
+
+    public void PlayWinClip()
+    {
+        winOrLoseAS.PlayOneShot(winClip);
+    }
+
+
+    public void PlayLoseClip()
+    {
+        winOrLoseAS.PlayOneShot(loseClip);
     }
 }
