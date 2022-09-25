@@ -97,7 +97,16 @@ public class FSMController : MonoBehaviour
             animator.SetBool("Run", false);
         }
 
-        if(state == FollowState)
+        if (state == IdleState)
+        {
+            animator.SetBool("Walk", false);
+        }
+        else if (state == BackToIdleState)
+        {
+            animator.SetBool("Walk", true);
+        }
+
+        if (state == FollowState)
         {
             AlertAgents();
         }
