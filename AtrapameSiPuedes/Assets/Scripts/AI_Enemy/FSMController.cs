@@ -69,10 +69,12 @@ public class FSMController : MonoBehaviour
         if (patrol)
         {
             ChangeToState(PatrolState);
+            animator.runtimeAnimatorController = controllerPatrullero;
         }
         else
         {
             ChangeToState(IdleState);
+            animator.runtimeAnimatorController = controllerPotrero;
         }
     }
     
