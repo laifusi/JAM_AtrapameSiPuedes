@@ -43,4 +43,9 @@ public class Menus : MonoBehaviour
         SceneManager.LoadScene("Victoria");
     }
 
+    public void Creditos()
+    {
+        SceneManager.LoadScene("Créditos");
+    }
+
 }
