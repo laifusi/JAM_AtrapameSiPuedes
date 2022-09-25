@@ -14,6 +14,9 @@ public class FSMController : MonoBehaviour
     public FSMAlertState AlertState; // Alert state
 
     [SerializeField] private Text stateText; // Text to show what state we are in
+    [SerializeField] private Animator animator;
+    [SerializeField] private RuntimeAnimatorController controllerPotrero;
+    [SerializeField] private RuntimeAnimatorController controllerPatrullero;
 
     private NavMeshAgent navMeshAgent; // NavMeshAgent component
 
@@ -83,11 +86,13 @@ public class FSMController : MonoBehaviour
         {
             ChangeAgentSpeed(followSpeedMultiplier);
             Game_Controller.Instance.activarAlarma();
+            animator.SetBool("Run", true);
         }
         else
         {
             ChangeAgentSpeed(patrolSpeedMultiplier);
             Game_Controller.Instance.desactivarAlarma();
+            animator.SetBool("Run", false);
         }
 
         if(state == FollowState)

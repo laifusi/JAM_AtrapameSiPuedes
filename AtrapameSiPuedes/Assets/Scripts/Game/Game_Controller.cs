@@ -43,7 +43,7 @@ public class Game_Controller : MonoBehaviour
     {
         Debug.Log("Pierdes la partida");
         MusicManager.Instance.PlayLoseClip();
-        reproductor_audio.Stop();
+        desactivarAlarma();
         menu.Derrota();
     }
 
