@@ -14,9 +14,13 @@ public class Boton_puerta : MonoBehaviour
 
     public GameObject panel_info;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         interact = false;
 
         if(estado_1)
@@ -52,6 +56,7 @@ public class Boton_puerta : MonoBehaviour
     {
         if (Input.GetKeyDown("x") && interact)
         {
+            audioSource?.Play();
             Debug.Log("Abriendo puertas");
             cambio_estado();
         }
