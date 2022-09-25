@@ -8,7 +8,8 @@ public class Menus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(Game_Controller.Instance != null)
+            Game_Controller.Instance.desactivarAlarma();
     }
 
     // Update is called once per frame

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 1.37
+    agentRadius: 1
     agentHeight: 3.18
-    agentSlope: 45
+    agentSlope: 36.2
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.45666668
+    cellSize: 0.33333334
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -4463,19 +4463,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346823292}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.59947914, y: 0.59947914, z: 0.59947914}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1569769272}
-  m_Father: {fileID: 1005058874}
-  m_RootOrder: 2
+  m_Father: {fileID: 738937662}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.24052477, y: 0.04829943}
   m_AnchorMax: {x: 0.75326246, y: 0.18776649}
-  m_AnchoredPosition: {x: 0, y: -1.628479}
-  m_SizeDelta: {x: 0, y: 3.037}
+  m_AnchoredPosition: {x: 0.000061035156, y: -0.97624207}
+  m_SizeDelta: {x: 394.29535, y: 52.515575}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &346823294
 MonoBehaviour:
@@ -6236,11 +6236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6d50c6a2ce5b53499c2142ff3e55d90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6d50c6a2ce5b53499c2142ff3e55d90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.953
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6d50c6a2ce5b53499c2142ff3e55d90, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8380,6 +8380,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314386585}
+  - {fileID: 346823293}
+  - {fileID: 2094478202}
   m_Father: {fileID: 1247138232}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8572,7 +8574,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756708900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8582,7 +8584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &756708902
@@ -8605,7 +8607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pulsa E o Q para dejar una vaina de teletransporte en el suelo. '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -8668,7 +8670,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 38.309967, y: 11.3032, z: 30.646301, w: 11.293247}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -12807,7 +12809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993222286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.6, y: -1.25, z: -37.9}
+  m_LocalPosition: {x: 13.8, y: -1.25, z: -36.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12945,8 +12947,6 @@ RectTransform:
   m_Children:
   - {fileID: 123566479}
   - {fileID: 1239897813}
-  - {fileID: 346823293}
-  - {fileID: 2094478202}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16366,6 +16366,19 @@ MonoBehaviour:
   reproductor_audio: {fileID: 1247138234}
   panel_alarma: {fileID: 1314386581}
   menu: {fileID: 1247138233}
+  indicaciones:
+  - "Inf\xEDltrate en el edificio y esquiva a los guardias hasta al canzar el malet\xEDn."
+  - Una vez lo tengas en tu poder, regresa a la entrada y escapa.
+  - Para ayudarte tienes las vainas de teletransporte.
+  - Pulsa "E" o "Q" para dejar una vaina de teletransporte en el suelo.
+  - "Una vez hayas colocado la vaina, no podr\xE1s quitarla hasta haberla usado."
+  - "Vuelve a pulsar el bot\xF3n empleado para transportarte a la posici\xF3n de
+    la vaina."
+  - Mucha suerte.
+  panel_text: {fileID: 2094478201}
+  text: {fileID: 756708902}
+  timer: 4
+  timer_actual: 2
 --- !u!4 &1247138232
 Transform:
   m_ObjectHideFlags: 0
@@ -27133,7 +27146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252845}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -14.23, y: -2.19, z: -4.42}
+  m_LocalPosition: {x: -11.53, y: -2.19, z: -4.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27164,7 +27177,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079566516}
-  m_LocalRotation: {x: -0, y: 0.71823186, z: -0, w: 0.69580394}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -17.22, y: -2.19, z: 21.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27172,7 +27185,7 @@ Transform:
   - {fileID: 498579767}
   m_Father: {fileID: 0}
   m_RootOrder: 34
-  m_LocalEulerAnglesHint: {x: 0, y: 91.817, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2082269506
 GameObject:
   m_ObjectHideFlags: 0
@@ -27532,7 +27545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2094478202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27540,19 +27553,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094478201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.68190753, y: 0.80929685, z: 0.59947914}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 756708901}
-  m_Father: {fileID: 1005058874}
-  m_RootOrder: 3
+  m_Father: {fileID: 738937662}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.24052477, y: 0.04829943}
-  m_AnchorMax: {x: 0.75326246, y: 0.18776649}
-  m_AnchoredPosition: {x: 0, y: -1.628479}
-  m_SizeDelta: {x: 0, y: 3.037}
+  m_AnchorMin: {x: 0.205125, y: 0.68600005}
+  m_AnchorMax: {x: 0.78735423, y: 0.882}
+  m_AnchoredPosition: {x: 0.59942627, y: -0.29974365}
+  m_SizeDelta: {x: 313.7343, y: 22.571716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094478203
 MonoBehaviour:
